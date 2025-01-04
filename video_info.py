@@ -17,11 +17,12 @@ def get_video_title(video_id):
         return video_title
     except Exception as e:
         print(f"error is {e}")
+        return "Cannot find title"
 
 # fetch transcript through youtube-transcript-api
 def get_video_transcript(video_id):                                                # method-1
     proxies={
-        "https":f"{os.getenv('proxy2')}",
+        "https":f"{os.getenv('proxy3')}",
     }
 
     try:
@@ -34,6 +35,7 @@ def get_video_transcript(video_id):                                             
         return transcript_text
     except Exception as e:
         print(f"Error is {e}")
+        return "No Transcript Found"
 
 if __name__ == '__main__':
     video_id='lzILoMjEpaE'
