@@ -24,7 +24,10 @@ def summarise():
             max_len=150
         else:
             max_len=int(max_len)
-        video_id=url.split('=')[1]
+        if url[11]=='.':
+            video_id = url.split('=')[1]
+        else:
+            video_id = url.split('?')[0][17:]
         title=video_info.get_video_title(video_id)
         transcript=video_info.get_video_transcript(video_id)
         summary=summariser.summarise(video_id, max_len, lang)

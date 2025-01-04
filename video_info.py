@@ -27,7 +27,6 @@ def get_video_transcript(video_id):                                             
     try:
         session = requests.Session()
         session.proxies.update(proxies)
-        print(session.proxies)
         transcript_list = YouTubeTranscriptApi.get_transcript(video_id, proxies=session.proxies)
         transcript_text=""
         for d in transcript_list:
