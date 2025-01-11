@@ -20,7 +20,7 @@ def summarise():
     if request.method=='POST':
         url=request.form['url']
         max_len=request.form.get('max_len','')
-        lang=request.form['lang']
+        # lang=request.form['lang']
         if not max_len.isdigit():
             max_len=150
         else:
@@ -67,4 +67,4 @@ def summarise():
         return render_template('output.html')
 
 if __name__=="__main__":
-    app.run()
+    app.run(debug=True)
