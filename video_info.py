@@ -19,8 +19,7 @@ def get_video_title(video_id):
         print(f"error is {e}")
         return "Cannot find title"
 
-# fetch transcript through youtube-transcript-api
-def get_video_transcript(video_id):                                                # method-1
+def get_video_transcript(video_id):                                              
     proxies={
         "https":f"{os.getenv('proxy3')}",
     }
