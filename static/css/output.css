@@ -3,44 +3,30 @@
     font-style: normal;
     font-weight: 400;
     src: url("../fonts/poppins/poppins-v5-latin-regular.eot");
-    /* IE9 Compat Modes */
-    src: local("Poppins Regular"), local("Poppins-Regular"), url("../fonts/poppins/poppins-v5-latin-regular.eot?#iefix") format("embedded-opentype"), url("../fonts/poppins/poppins-v5-latin-regular.woff2") format("woff2"), url("../fonts/poppins/poppins-v5-latin-regular.woff") format("woff"), url("../fonts/poppins/poppins-v5-latin-regular.ttf") format("truetype"), url("../fonts/poppins/poppins-v5-latin-regular.svg#Poppins") format("svg");
-    /* Legacy iOS */ 
+    src: local("Poppins Regular"), local("Poppins-Regular"), url("../fonts/poppins/poppins-v5-latin-regular.eot?#iefix") format("embedded-opentype"), url("../fonts/poppins/poppins-v5-latin-regular.woff2") format("woff2"), url("../fonts/poppins/poppins-v5-latin-regular.woff") format("woff"), url("../fonts/poppins/poppins-v5-latin-regular.ttf") format("truetype"), url("../fonts/poppins/poppins-v5-latin-regular.svg#Poppins") format("svg"); 
     font-family: 'Poppins';
 }
-*{
+
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Poppins';
+    font-family: 'Poppins', sans-serif;
 }
-html, body
-{
+
+html, body {
     width: 100vw;
     height: 100vh;
     color: beige;
+    overflow-x: hidden;
 }
-body
-{
+
+body {
     display: flex;
     flex-direction: column;
-    align-items: center;
-    /* justify-content: start; */
     background-image: radial-gradient(ellipse, rgba(9, 9, 54, 0.767), rgba(4, 4, 39, 0.89), black);
 }
-section h2
-{
-    margin-top: 1rem;
-    font-weight: normal;
-    text-align: center;
-}
-a
-{
-    color: beige;
-    text-decoration: none;
-    font-family: 'Poppins';
-    font-size: larger;
-}
+
 header
 {
     display: flex;
@@ -50,6 +36,142 @@ header
     align-items: center;
     padding: 18px;
     box-shadow: 0px 0px 50px black;
+}
+
+a
+{
+    color: beige;
+    text-decoration: none;
+    font-size: larger;
+}
+
+h2, h3 {
+    text-align: center;
+    font-weight: normal;
+}
+
+h3 {
+    margin-bottom: 30px;
+}
+
+.lang-container {
+    width: 100%;
+    height: 900px;
+    display: flex;
+    flex-direction: row;
+    /* background-color: rgba(0, 0, 0, 0.315); */
+}
+
+.lang-container input {
+    display: none;
+    visibility: hidden;
+    appearance: none;
+    -webkit-appearance: none;
+}
+
+.tab-container {
+    width: 20%;
+    height: 100%;
+    padding: 20px 30px 20px 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    box-shadow: 0px 0px 50px black;
+    transition: 0.5s ease;
+}
+  
+.tab-container button {
+    transition: 0.2s ease-out;
+}
+
+.tab.active {
+    background-color: #3330da;
+    color: white;
+    border-bottom: none;
+    font-weight: bold;
+}
+
+.content-container {
+    width: 100%;
+    padding: 20px;
+}
+
+.sum-container {
+    margin: 30px;
+    padding: 20px;
+    border-radius: 8px;
+    height: 500px;
+    overflow-y: auto;
+    box-shadow: 0px 0px 50px black;
+}
+
+section p {
+    text-align: justify;
+}
+
+button {
+    margin: 10px 0 10px 0;
+    background: none;
+    color: beige;
+    border: 1px solid transparent;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+button:hover {
+    /* border-bottom: 1px solid beige; */
+    background-color: rgba(0, 0, 0, 0.493);
+}
+
+button.active {
+    background-color: #3330da;
+    color: white;
+    /* border: 1px solid #007BFF; */
+    border-bottom: none;
+    font-weight: bold;
+}
+  
+.content {
+    display: none;
+}
+  
+.content.active {
+    display: block;
+}
+
+@media (max-height: 945px) {
+    .tab-container {
+        height: 100;
+    }
+}
+
+@media (max-width: 680px) {
+    .tab-container {
+        width: 137px;
+    }
+}
+
+/* .hamburger {
+    flex-direction: column;
+    position: absolute;
+    cursor: pointer;
+    gap: 5px;
+    left: 5px;
+}
+
+.hamburger span {
+    width: 25px;
+    height: 3px;
+    background-color: white;
+    border-radius: 5px;
+    transition: all 0.3s;
+} */
+
+/* section h2
+{
+    margin-top: 1rem;
+    font-weight: normal;
+    text-align: center;
 }
 .container
 {
@@ -62,7 +184,6 @@ header
 }
 #transcript, #summary
 {
-    /* margin: 20px 20px; */
     padding: 0 30px 0 20px;
     width: 90%;
     height: 90%;
@@ -89,8 +210,10 @@ header
 #summary
 {
     animation: move-div 0.5s ease-in-out 1s forwards;
-}
-@keyframes move-div{
+} */
+
+
+/* @keyframes move-div{
     100%{
         opacity: 1;
     }
@@ -106,11 +229,19 @@ header
         flex-direction: column;
     }
 
-    #transcript, #summary {
+    #transcript {
+        display: none;
+    }
+
+    #summary {
         padding: 0 50px 0 50px;
+        height: 600px;
+        animation: move-div 0.5s ease-in-out forwards
     }
 }
 
 @media (max-width: 450px) {
-
-}
+    #summary {
+        padding: 0 20px 0 20px;
+    }
+} */

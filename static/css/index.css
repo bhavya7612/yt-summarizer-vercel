@@ -102,6 +102,10 @@ h3 {
     padding-top: 15px;
 }
 
+.block h3{
+    text-align: justify;
+}
+
 .block2 {
     
     flex-direction: column;
