@@ -101,21 +101,21 @@ a {
 }
 
 .tab-container {
-    width: 225px;
+    width: 180px;
     padding: 0 30px 0 30px;
     height: fit-content;
     position: absolute;
     top: 50px;
     box-shadow: 0px 0px 50px black;
     border-radius: 5px;
-    display: flex;
+    /* display: flex;
     flex-direction: column;
     justify-content: space-evenly;
-    align-items: center;
+    align-items: center; */
     background-color: rgb(9, 7, 32);
     /* background-image: radial-gradient(ellipse, rgba(8, 8, 44, 0.767), rgba(4, 4, 39, 0.89), black); */
     transition: 0.5s ease;
-    transform: translateX(-225px);
+    transform: translateX(-180px);
 }
 
 .content-container {
