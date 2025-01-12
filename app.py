@@ -57,7 +57,7 @@ def summarise():
         summary_rus=translator.translate_to_russian(summary)
         summary_sp=translator.translate_to_spanish(summary)
         
-        return render_template('output.html', transcript=transcript, title=title, summary_en=summary,\
+        return render_template('output.html', transcript=transcript, vid_title=title, summary_en=summary,\
                                summary_hi=summary_hi, summary_mr=summary_mr, summary_guj=summary_guj,\
                                summary_malaya=summary_malaya, summary_kan=summary_kan, summary_ben=summary_ben,\
                                summary_pj=summary_pj,  summary_tam=summary_tam, summary_tel=summary_tel,\
@@ -67,4 +67,4 @@ def summarise():
         return render_template('output.html')
 
 if __name__=="__main__":
-    app.run(debug=True)
+    app.run()
