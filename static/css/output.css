@@ -101,21 +101,21 @@ a {
 }
 
 .tab-container {
-    width: 180px;
+    width: 225px;
     padding: 0 30px 0 30px;
     height: fit-content;
     position: absolute;
     top: 50px;
     box-shadow: 0px 0px 50px black;
     border-radius: 5px;
-    /* display: flex;
+    display: flex;
     flex-direction: column;
-    justify-content: space-around;
-    align-items: center; */
+    justify-content: space-evenly;
+    align-items: center;
     background-color: rgb(9, 7, 32);
     /* background-image: radial-gradient(ellipse, rgba(8, 8, 44, 0.767), rgba(4, 4, 39, 0.89), black); */
     transition: 0.5s ease;
-    transform: translateX(-180px);
+    transform: translateX(-225px);
 }
 
 .content-container {
@@ -141,7 +141,7 @@ button {
     color: beige;
     border: 1px solid transparent;
     cursor: pointer;
-    border-radius: 5px;
+    border-radius: 2px;
 }
 
 button:hover {
@@ -186,7 +186,7 @@ input:checked ~ .tab-container {
 }
 
 /* input:checked ~ .content-container {
-    width: 88%;
+    width: 87%;
     transform: translateX(180px);
     pointer-events: none;
 } */
