@@ -121,6 +121,7 @@ a {
 .content-container {
     width: 100%;
     padding: 20px;
+    transition: 0.5s ease;
 }
 
 .sum-container {
@@ -151,7 +152,6 @@ button.active {
     background-color: #3330da;
     color: white;
     border-bottom: none;
-    font-weight: bold;
 }
   
 .content {
@@ -184,6 +184,12 @@ input:checked ~ .toggle .mid {
 input:checked ~ .tab-container {
     transform: translateX(0);
 }
+
+/* input:checked ~ .content-container {
+    width: 88%;
+    transform: translateX(180px);
+    pointer-events: none;
+} */
 
 /* @media (max-height: 945px) {
     .tab-container {
