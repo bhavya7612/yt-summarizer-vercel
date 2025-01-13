@@ -43,11 +43,11 @@
         </label>
         <div class="content-container" id="content-container">
             <h2>{{vid_title}}</h2>
-            <div class="btn" id="btn">
-                <button id="btn-print-this"><i class="fa fa-download"></i></button> 
-                <p>Save to PDF</p>
-            </div>
             <div class="sum-container" id="sum-container">
+                <div class="btn" id="btn" onclick="window.print()">
+                    <button id="btn-print-this"><i class="fa fa-download"></i></button> 
+                    <p>Save to PDF</p>
+                </div>
                 <section id="transcript" class="content">
                     <h3>Transcript</h3>
                     <p>{{transcript}}</p>
@@ -120,8 +120,6 @@
         </div>
         
     </div>
-    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
-    <script src="../static/js/printThis.js"></script>
     <script>
         function activateTab(selectedTab, contentId) {
         const tabs = document.querySelectorAll('.tab');
@@ -133,16 +131,6 @@
         selectedTab.classList.add('active');
         document.getElementById(contentId).classList.add('active');
         }
-
-        $(document).ready(function(){
-            $('#btn').click(function(){
-                $('#content-container').printThis({
-                    importCSS: true,
-                    importStyle: true,
-                    loadCSS: "../static/css/output.css"
-                });
-            })
-        })
     </script>
 </body>
 </html>

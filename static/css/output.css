@@ -12,16 +12,15 @@
     padding: 0;
     box-sizing: border-box;
     font-family: 'Poppins', sans-serif;
+    print-color-adjust: exact !important;
+    -webkit-print-color-adjust: exact !important;
 }
 
-html, body {
+body {
     width: 100vw;
     height: 100vh;
     color: beige;
     overflow-x: hidden;
-}
-
-body {
     background-image: radial-gradient(ellipse, rgba(9, 9, 54, 0.767), rgba(4, 4, 39, 0.89), black);
 }
 
@@ -31,17 +30,17 @@ header {
     width: 100%;
     justify-content: space-between;
     align-items: center;
-    padding: 20px;
+    padding: 20px 20px 20px 30px;
     box-shadow: 0px 0px 50px black;
-}
-
-h2 {
-    margin-top: 30px;
 }
 
 h2, h3 {
     text-align: center;
     font-weight: normal;
+}
+
+h2 {
+    margin-top: 30px;
 }
 
 h3 {
@@ -53,6 +52,10 @@ a {
     text-decoration: none;
     font-size: larger;
 }
+
+/* .lang-container {
+    height: fit-content;
+} */
 
 .lang-container input {
     display: none;
@@ -103,7 +106,7 @@ a {
 .tab-container {
     width: 180px;
     padding: 0 30px 0 30px;
-    height: fit-content;
+    height: 100%;
     position: absolute;
     top: 50px;
     box-shadow: 0px 0px 50px black;
@@ -122,15 +125,16 @@ a {
     width: 100%;
     padding: 20px;
     transition: 0.5s ease;
+    height: 100%;
 }
 
 .sum-container {
     margin: 30px;
     padding: 20px;
     border-radius: 8px;
-    height: 500px;
+    /* height: 500px; */
     text-align: justify;
-    overflow-y: auto;
+    overflow: auto;
     box-shadow: 0px 0px 50px black;
 }
 
@@ -154,10 +158,12 @@ a {
 }
 
 .btn {
-    position: absolute;
-    top: 9%;
-    right: 2%;
+    /* position: absolute; */
+    /* top: 7%; */
+    /* right: 2%; */
+    width: 150px;
     padding: 15px;
+    margin-bottom: 10px;
     display: flex;
     align-items: center;
     height: 40px;
@@ -165,7 +171,7 @@ a {
     gap: 5px;
     border-radius: 2px;
     font-size: 15px;
-    box-shadow: 0px 0px 50px black;
+    box-shadow: 0px 0px 15px black;
 }
 
 .btn #btn-print-this {
@@ -212,7 +218,7 @@ input:checked ~ .tab-container {
 }
 
 @media print {
-    .btn {
+    .btn, label, header {
         display: none;
     }
 }
