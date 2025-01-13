@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{vid_title}}</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="../static/fonts/material-icon/css/material-design-iconic-font.min.css">
+    <link rel="stylesheet" href="../static/css/output.css">
+</head>
+<body>
+    <header>
+        <div class="model"><a href="/project">&larr; Back</a></div>
+        <div class="home"><a href="/">Home</a></div>
+    </header>
+    <div class="lang-container">
+        <label>
+            <input type="checkbox" name="" id="">
+            <div class="toggle" id="toggle">
+                <span class="top common"></span>
+                <span class="mid common"></span>
+                <span class="bottom common"></span>
+            </div>
+            <div class="tab-container">
+                <button class="tab" onclick="activateTab(this, 'transcript')">Transcript</button>
+                <button class="tab active" onclick="activateTab(this, 'english')">English</button>
+                <button class="tab" onclick="activateTab(this, 'hindi')">Hindi</button>
+                <button class="tab" onclick="activateTab(this, 'marathi')">Marathi</button>
+                <button class="tab" onclick="activateTab(this, 'guj')">Gujarati</button>
+                <button class="tab" onclick="activateTab(this, 'malaya')">Malayalam</button>
+                <button class="tab" onclick="activateTab(this, 'kan')">Kannada</button>
+                <button class="tab" onclick="activateTab(this, 'ben')">Bengali</button>
+                <button class="tab" onclick="activateTab(this, 'pj')">Punjabi</button>
+                <button class="tab" onclick="activateTab(this, 'tam')">Tamil</button>
+                <button class="tab" onclick="activateTab(this, 'tel')">Telugu</button>
+                <button class="tab" onclick="activateTab(this, 'ar')">Arabic</button>
+                <button class="tab" onclick="activateTab(this, 'french')">French</button>
+                <button class="tab" onclick="activateTab(this, 'germ')">German</button>
+                <button class="tab" onclick="activateTab(this, 'jap')">Japanese</button>
+                <button class="tab" onclick="activateTab(this, 'rus')">Russian</button>
+                <button class="tab" onclick="activateTab(this, 'sp')">Spanish</button>
+            </div>
+        </label>
+        <div class="content-container" id="content-container">
+            <h2>{{vid_title}}</h2>
+            <div class="btn" id="btn">
+                <button id="btn-print-this"><i class="fa fa-download"></i></button> 
+                <p>Save to PDF</p>
+            </div>
+            <div class="sum-container" id="sum-container">
+                <section id="transcript" class="content">
+                    <h3>Transcript</h3>
+                    <p>{{transcript}}</p>
+                </section>
+                <section id="english" class="content active">
+                    <h3>Summary (English)</h3>
+                    <p>{{summary_en}}</p>
+                </section>
+                <section id="hindi" class="content">
+                    <h3>Summary (Hindi)</h3>
+                    <p>{{summary_hi}}</p>
+                </section>
+                <section id="marathi" class="content">
+                    <h3>Summary (Marathi)</h3>
+                    <p>{{summary_mr}}</p>
+                </section>
+                <section id="guj" class="content">
+                    <h3>Summary (Gujarati)</h3>
+                    <p>{{summary_guj}}</p>
+                </section>
+                <section id="malaya" class="content">
+                    <h3>Summary (Malayalam)</h3>
+                    <p>{{summary_malaya}}</p>
+                </section>
+                <section id="kan" class="content">
+                    <h3>Summary (Kannada)</h3>
+                    <p>{{summary_kan}}</p>
+                </section>
+                <section id="ben" class="content">
+                    <h3>Summary (Bengali)</h3>
+                    <p>{{summary_ben}}</p>
+                </section>
+                <section id="pj" class="content">
+                    <h3>Summary (Punjabi)</h3>
+                    <p>{{summary_pj}}</p>
+                </section>
+                <section id="tam" class="content">
+                    <h3>Summary (Tamil)</h3>
+                    <p>{{summary_tam}}</p>
+                </section>
+                <section id="tel" class="content">
+                    <h3>Summary (Telugu)</h3>
+                    <p>{{summary_tel}}</p>
+                </section>
+                <section id="ar" class="content">
+                    <h3>Summary (Arabic)</h3>
+                    <p>{{summary_ar}}</p>
+                </section>
+                <section id="french" class="content">
+                    <h3>Summary (French)</h3>
+                    <p>{{summary_french}}</p>
+                </section>
+                <section id="germ" class="content">
+                    <h3>Summary (German)</h3>
+                    <p>{{summary_germ}}</p>
+                </section>
+                <section id="jap" class="content">
+                    <h3>Summary (Japanese)</h3>
+                    <p>{{summary_jap}}</p>
+                </section>
+                <section id="rus" class="content">
+                    <h3>Summary (Russian)</h3>
+                    <p>{{summary_rus}}</p>
+                </section>
+                <section id="sp" class="content">
+                    <h3>Summary (Spanish)</h3>
+                    <p>{{summary_sp}}</p>
+                </section>
+            </div>
+        </div>
+        
+    </div>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="../static/js/printThis.js"></script>
+    <script>
+        function activateTab(selectedTab, contentId) {
+        const tabs = document.querySelectorAll('.tab');
+        const contents = document.querySelectorAll('.content');
+        
+        tabs.forEach(tab => tab.classList.remove('active'));
+        contents.forEach(content => content.classList.remove('active'));
+
+        selectedTab.classList.add('active');
+        document.getElementById(contentId).classList.add('active');
+        }
+
+        $(document).ready(function(){
+            $('#btn').click(function(){
+                $('#content-container').printThis({
+                    importCSS: true,
+                    importStyle: true,
+                    loadCSS: "../static/css/output.css"
+                });
+            })
+        })
+    </script>
+</body>
+</html>
+<!-- <section>
+    <h2>{{title}} Lorem ipsum dolor sit amet, consectetur adipisicing elit. Natus, architecto!</h2>
+    <div class="container">
+        <div id="transcript">
+            <h2>Transcript</h2>
+            <div id="inner1">
+                {{transcript}} Lorem ipsum, dolor sit amet consectetur adipisicing elit. Iure laborum, aliquam corporis enim similique error dignissimos animi vel, obcaecati omnis debitis ullam. Cumque unde deleniti quos velit architecto ducimus sapiente nostrum soluta sed pariatur asperiores explicabo modi doloribus molestiae totam perspiciatis iste obcaecati, exercitationem fugiat qui? Minus quibusdam qui aliquam, nisi sed autem ipsa nam dolorum quo voluptatibus, ad dolores similique veniam atque odit deserunt beatae accusamus nihil reprehenderit libero maxime commodi. Iste laboriosam repudiandae natus iure repellat a exercitationem minima, praesentium sed amet. Quidem nulla magnam deserunt voluptatibus quibusdam esse, unde blanditiis quasi ratione tenetur corrupti, sint obcaecati iure facilis quod accusamus architecto sed cumque quos sunt minima fugiat? Ipsam sint ea molestiae, cumque ratione aliquam, earum minus, culpa aut consequuntur odio minima labore voluptates magni sequi omnis atque perspiciatis vitae? Magni ex reprehenderit vero! Deserunt commodi mollitia iure perspiciatis nam temporibus quasi aperiam numquam aut consequuntur necessitatibus doloribus ex, nisi ea nesciunt cupiditate, delectus tempore quas. Corporis harum dolores id consequatur inventore? Aliquid dicta, dolore et esse veniam minima dignissimos eligendi a quia optio totam exercitationem, earum impedit sapiente, quidem deserunt beatae unde? Veniam ipsam ad quae, quos eaque, exercitationem dolorem nesciunt voluptatem aspernatur sequi laborum fuga nisi.
+            </div>
+        </div>
+        <div id="summary">
+            <h2>Summary ({{lang}})</h2>
+            <div id="inner2">
+                {{summary}} Lorem ipsum dolor sit amet consectetur adipisicing elit. Ab, sequi. Iusto corporis deserunt dolores! Officia necessitatibus ea delectus velit reprehenderit suscipit omnis architecto cupiditate quidem inventore neque dolores dolore consequatur, alias libero? Ratione omnis debitis ex eius laborum earum dolorem minima facilis laudantium reiciendis accusantium modi sed quis sunt fuga illo neque recusandae laboriosam nostrum sint, adipisci facere enim sequi. Autem tempora vero nemo numquam, praesentium voluptates. Natus, libero odit quia sunt ad, quo doloribus magni, accusantium id illum nemo! Animi natus, numquam ipsam architecto mollitia similique sit quisquam, sint eligendi fugit laudantium iure ipsum omnis, labore quae ad accusantium blanditiis iusto quos quis illum optio reprehenderit deleniti nisi. Doloribus odit, ipsa doloremque quas nisi porro molestiae adipisci facilis sit at dignissimos modi inventore sed temporibus labore vero accusantium necessitatibus omnis cumque sunt, alias beatae repudiandae! Asperiores pariatur in odit rerum fuga ipsam libero aliquid impedit ab ullam molestiae, distinctio fugiat nobis quod, laudantium id optio animi maxime, mollitia eos! Molestias eius repudiandae tempore temporibus impedit ipsa id nulla accusamus, cupiditate non illum blanditiis facilis! Inventore beatae quisquam id veniam totam commodi tempora accusantium? Debitis, tempora enim non minima consequatur fugiat exercitationem fuga, ipsum minus sint, esse officia ea in!
+            </div>
+        </div>
+    </div>
+</section> -->
