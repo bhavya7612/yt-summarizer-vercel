@@ -266,7 +266,7 @@ header div a:hover
     }
 }
 
-@media (max-width: 380px) {
+@media (max-height: 570px) {
     .submit {
         margin-bottom: 20px;
     }
