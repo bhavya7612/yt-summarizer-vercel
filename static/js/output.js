@@ -17,16 +17,23 @@ let audio = null;
 
 // Map of languages to their respective language codes
 const languageMap = {
+transcript: 'en',
 en: 'en',
-es: 'es',
+hi: 'hi',
+mr:'mr',
+gu:'gu',
+ml:'ml',
+kn:'kn',
+bn:'bn',
+pa:'pa',
+ta:'ta',
+te:'te',
+ar:'ar',
 fr: 'fr',
 de: 'de',
-hi: 'hi',
-transcript: 'en',
-ar:'ar',
-ru:'ru',
-gu:'gu',
 ja:'ja',
+ru:'ru',
+es: 'es',
 // Add more languages here
 };
 
