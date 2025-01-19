@@ -32,7 +32,7 @@ def text_to_speech():
         #     filename = temp_file.name
 
         # Convert text to speech
-        tts = gTTS(text=text, lang=language)
+        tts = gTTS(text=text, lang=language, slow=False)
         audio_file=BytesIO()
         tts.write_to_fp(audio_file)
         audio_file.seek(0)
