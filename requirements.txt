@@ -3,5 +3,6 @@ youtube_transcript_api==0.5.0
 google-api-python-client
 google-generativeai
 googletrans==3.1.0a0
+gtts
 python-dotenv
 gunicorn

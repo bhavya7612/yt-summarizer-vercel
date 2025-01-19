@@ -1,7 +1,9 @@
-from flask import Flask, request, render_template
+from flask import Flask, request, render_template, jsonify, send_file
 import summariser
 import translator
 import video_info
+from gtts import gTTS
+from io import BytesIO
 
 app=Flask(__name__)
 app.secret_key='123-456-789'
@@ -14,6 +16,35 @@ def home():
 def projectpage():
     return render_template('url.html')
 
+@app.route('/speak', methods=['POST'])
+def text_to_speech():
+    try:
+        # Parse JSON data from the frontend
+        data = request.get_json()
+        text = data.get('text')
+        language = data.get('language', 'en')  # Default to English if no language provided
+
+        if not text:
+            return jsonify({'error': 'Text is required!'}), 400
+
+        # Generate a unique filename for the audio
+        # with tempfile.NamedTemporaryFile(suffix=".mp3", delete=False, dir="/tmp") as temp_file:
+        #     filename = temp_file.name
+
+        # Convert text to speech
+        tts = gTTS(text=text, lang=language)
+        audio_file=BytesIO()
+        tts.write_to_fp(audio_file)
+        audio_file.seek(0)
+        # tts.save(filename)
+
+        # Serve the audio file
+        response = send_file(audio_file, mimetype='audio/mpeg', as_attachment=False, download_name='output.mp3')
+
+        return response
+
+    except Exception as e:
+        return jsonify({'error': str(e)}), 500
 
 @app.route('/output',methods=['GET','POST'])
 def summarise():
@@ -67,4 +98,4 @@ def summarise():
         return render_template('output.html')
 
 if __name__=="__main__":
-    app.run()
+    app.run(debug=True)
