@@ -57,7 +57,8 @@ tabs.forEach(tab => tab.addEventListener('click', switchTab));
 // Add event listener for the single Speak button
 // speakButton.addEventListener('click', speakActiveTabContent);
 speakButton.addEventListener("click", async () => {
-    const activeContent = document.querySelector('.content.active').textContent;
+    const activeElement = document.querySelector('.content.active');
+    const activeContent = activeElement.textContent;
 
     if (!activeContent) {
         alert("No content to speak.");
@@ -66,7 +67,7 @@ speakButton.addEventListener("click", async () => {
 
     try {
         // Get the language code for the active tab
-        const language = languageMap[activeContent.id] || "en";
+        const language = languageMap[activeElement.id] || "en";
 
         // Send a POST request to Flask backend
         const response = await fetch("/speak", {
