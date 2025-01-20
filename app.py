@@ -3,6 +3,7 @@ import summariser
 import translator
 import video_info
 from gtts import gTTS
+from langdetect import detect
 from io import BytesIO
 
 app=Flask(__name__)
@@ -22,10 +23,14 @@ def text_to_speech():
         # Parse JSON data from the frontend
         data = request.get_json()
         text = data.get('text')
-        language = data.get('language')  # Default to English if no language provided
+        language = data.get('language')
+        lang_det = detect(text)
 
         if not text:
             return jsonify({'error': 'Text is required!'}), 400
+        
+        if lang_det != language:
+            language = lang_det
 
         # Generate a unique filename for the audio
         # with tempfile.NamedTemporaryFile(suffix=".mp3", delete=False, dir="/tmp") as temp_file:
