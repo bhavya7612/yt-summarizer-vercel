@@ -22,7 +22,7 @@ def text_to_speech():
         # Parse JSON data from the frontend
         data = request.get_json()
         text = data.get('text')
-        language = data.get('language', 'en')  # Default to English if no language provided
+        language = data.get('language')  # Default to English if no language provided
 
         if not text:
             return jsonify({'error': 'Text is required!'}), 400
@@ -98,4 +98,4 @@ def summarise():
         return render_template('output.html')
 
 if __name__=="__main__":
-    app.run(debug=True)
+    app.run()
