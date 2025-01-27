@@ -2,6 +2,8 @@ import os
 from googleapiclient.discovery import build
 from youtube_transcript_api import YouTubeTranscriptApi
 import requests
+from dotenv import load_dotenv
+load_dotenv()
 
 yt_api_key=os.getenv("YT_API_KEY")
 youtube = build('youtube', 'v3', developerKey=yt_api_key)
