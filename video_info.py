@@ -27,10 +27,11 @@ def get_video_transcript(video_id):
     try:
         session = requests.Session()
         session.proxies.update(proxies)
-        transcript_list = YouTubeTranscriptApi.get_transcript(video_id,\
-                                languages = ['en','en-IN','en-US','en-UK','es','hi','de','fr','ru','ja','ar'],\
-                                proxies = session.proxies\
-                                )
+        transcript_list = YouTubeTranscriptApi.get_transcript(
+                video_id,
+                languages = ['en','en-IN','en-US','en-UK','es','hi','de','fr','ru','ja','ar'],
+                proxies = session.proxies
+            )
         transcript_text=""
         for d in transcript_list:
             transcript_text += " " + d['text']
