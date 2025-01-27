@@ -21,7 +21,7 @@ def get_video_title(video_id):
 
 def get_video_transcript(video_id):                                              
     proxies={
-        "https":f"{os.getenv('proxy3')}",
+        "https":f"{os.getenv('proxy2')}",
     }
 
     try:
