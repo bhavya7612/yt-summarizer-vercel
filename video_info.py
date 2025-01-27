@@ -1,9 +1,7 @@
 import os
 from googleapiclient.discovery import build
 from youtube_transcript_api import YouTubeTranscriptApi
-from dotenv import load_dotenv
 import requests
-load_dotenv()
 
 yt_api_key=os.getenv("YT_API_KEY")
 youtube = build('youtube', 'v3', developerKey=yt_api_key)
@@ -29,7 +27,8 @@ def get_video_transcript(video_id):
         session.proxies.update(proxies)
         transcript_list = YouTubeTranscriptApi.get_transcript(video_id,\
                                 languages = ['en','en-IN','en-US','en-UK','es','hi','de','fr','ru','ja','ar'],\
-                                proxies = session.proxies)
+                                proxies = session.proxies\
+                                )
         transcript_text=""
         for d in transcript_list:
             transcript_text += " " + d['text']

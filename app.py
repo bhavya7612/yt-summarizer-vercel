@@ -56,7 +56,8 @@ def summarise():
     if request.method=='POST':
         url=request.form['url']
         max_len=request.form.get('max_len','')
-        # lang=request.form['lang']
+        temperature=request.form['temperature']
+        temperature=float(temperature)
         if not max_len.isdigit():
             max_len=150
         else:
@@ -67,7 +68,7 @@ def summarise():
             video_id = url.split('?')[0][17:]
         title=video_info.get_video_title(video_id)
         # transcript=video_info.get_video_transcript(video_id)
-        result=summariser.summarise(video_id, max_len)
+        result=summariser.summarise(video_id, max_len, temperature)
         summary=result[0]
         transcript=result[1]
         langs={
