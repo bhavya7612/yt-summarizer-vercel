@@ -7,3 +7,4 @@ gtts
 langdetect
 python-dotenv
 gunicorn
+beautifulsoup4

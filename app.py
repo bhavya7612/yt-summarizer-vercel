@@ -1,10 +1,11 @@
 from flask import Flask, request, render_template, jsonify, send_file
-import summariser
-import translator
-import video_info
 from gtts import gTTS
 from langdetect import detect
 from io import BytesIO
+from bs4 import BeautifulSoup
+import summariser
+import translator
+import video_info
 
 app=Flask(__name__)
 app.secret_key='123-456-789'
@@ -24,10 +25,12 @@ def text_to_speech():
         data = request.get_json()
         text = data.get('text')
         language = data.get('language')
-        lang_det = detect(text)
 
         if not text:
             return jsonify({'error': 'Text is required!'}), 400
+        
+        plain_text = BeautifulSoup(text, "html.parser").get_text() # Remove HTML tags
+        lang_det = detect(plain_text)
         
         if lang_det != language:
             language = lang_det
@@ -67,39 +70,81 @@ def summarise():
         else:
             video_id = url.split('?')[0][17:]
         title=video_info.get_video_title(video_id)
-        # transcript=video_info.get_video_transcript(video_id)
         result=summariser.summarise(video_id, max_len, temperature)
+        # transcript=video_info.get_video_transcript(video_id)
+        # langs={
+        #         'en':'English', 'hi':'Hindi', 'mr':'Marathi',\
+        #         'gu':'Gujarati', 'ml':'malayalam', 'kn':'Kannada',\
+        #         'bn':'Bengali', 'pa':'Punjabi', 'ta':'Tamil',\
+        #         'te':'Telugu', 'ar':'Arabic', 'fr':'French',\
+        #         'de':'German', 'ja':'Japanese', 'ru':'Russian', 'es':'Spanish'}
         summary=result[0]
         transcript=result[1]
-        langs={
-                'en':'English', 'hi':'Hindi', 'mr':'Marathi',\
-                'gu':'Gujarati', 'ml':'malayalam', 'kn':'Kannada',\
-                'bn':'Bengali', 'pa':'Punjabi', 'ta':'Tamil',\
-                'te':'Telugu', 'ar':'Arabic', 'fr':'French',\
-                'de':'German', 'ja':'Japanese', 'ru':'Russian', 'es':'Spanish'}
         
+        formatted_summary_en = summariser.process_summary(summary)
+
         summary_hi=translator.translate_to_hindi(summary)
+        formatted_summary_hi = summariser.process_summary(summary_hi)
+
         summary_mr=translator.translate_to_marathi(summary)
+        formatted_summary_mr = summariser.process_summary(summary_mr)
+
         summary_guj=translator.translate_to_guj(summary)
+        formatted_summary_guj = summariser.process_summary(summary_guj)
+
         summary_malaya=translator.translate_to_malayalam(summary)
+        formatted_summary_malaya = summariser.process_summary(summary_malaya)
+
         summary_kan=translator.translate_to_kannada(summary)
-        summary_ben=translator.translate_to_bengali(summary)
-        summary_pj=translator.translate_to_punjabi(summary)
-        summary_tam=translator.translate_to_tamil(summary)
-        summary_tel=translator.translate_to_telugu(summary)
-        summary_ar=translator.translate_to_arabic(summary)
-        summary_french=translator.translate_to_french(summary)
-        summary_germ=translator.translate_to_german(summary)
-        summary_jap=translator.translate_to_japanese(summary)
-        summary_rus=translator.translate_to_russian(summary)
-        summary_sp=translator.translate_to_spanish(summary)
+        formatted_summary_kan = summariser.process_summary(summary_kan)
         
-        return render_template('output.html', transcript=transcript, vid_title=title, summary_en=summary,\
-                               summary_hi=summary_hi, summary_mr=summary_mr, summary_guj=summary_guj,\
-                               summary_malaya=summary_malaya, summary_kan=summary_kan, summary_ben=summary_ben,\
-                               summary_pj=summary_pj,  summary_tam=summary_tam, summary_tel=summary_tel,\
-                               summary_ar=summary_ar, summary_french=summary_french, summary_germ=summary_germ,\
-                               summary_jap=summary_jap, summary_rus=summary_rus, summary_sp=summary_sp)
+        summary_ben=translator.translate_to_bengali(summary)
+        formatted_summary_ben = summariser.process_summary(summary_ben)
+
+        summary_pj=translator.translate_to_punjabi(summary)
+        formatted_summary_pj = summariser.process_summary(summary_pj)
+
+        summary_tam=translator.translate_to_tamil(summary)
+        formatted_summary_tam = summariser.process_summary(summary_tam)
+
+        summary_tel=translator.translate_to_telugu(summary)
+        formatted_summary_tel = summariser.process_summary(summary_tel)
+
+        summary_ar=translator.translate_to_arabic(summary)
+        formatted_summary_ar = summariser.process_summary(summary_ar)
+
+        summary_french=translator.translate_to_french(summary)
+        formatted_summary_french = summariser.process_summary(summary_french)
+
+        summary_germ=translator.translate_to_german(summary)
+        formatted_summary_germ = summariser.process_summary(summary_germ)
+
+        summary_jap=translator.translate_to_japanese(summary)
+        formatted_summary_jap = summariser.process_summary(summary_jap)
+
+        summary_rus=translator.translate_to_russian(summary)
+        formatted_summary_rus = summariser.process_summary(summary_rus)
+
+        summary_sp=translator.translate_to_spanish(summary)
+        formatted_summary_sp = summariser.process_summary(summary_sp)
+        
+        return render_template('output.html', transcript=transcript, vid_title=title,
+                               summary_en = formatted_summary_en,
+                               summary_hi = formatted_summary_hi,
+                               summary_mr = formatted_summary_mr,
+                               summary_guj = formatted_summary_guj,
+                               summary_malaya = formatted_summary_malaya,
+                               summary_kan = formatted_summary_kan,
+                               summary_ben = formatted_summary_ben,
+                               summary_pj = formatted_summary_pj, 
+                               summary_tam = formatted_summary_tam,
+                               summary_tel = formatted_summary_tel,
+                               summary_ar = formatted_summary_ar,
+                               summary_french = formatted_summary_french,
+                               summary_germ = formatted_summary_germ,
+                               summary_jap = formatted_summary_jap,
+                               summary_rus = formatted_summary_rus,
+                               summary_sp = formatted_summary_sp)
     else:
         return render_template('output.html')
 
